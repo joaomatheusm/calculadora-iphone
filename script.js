@@ -1,0 +1,77 @@
+const numberKeys = [...document.querySelectorAll('.num')];
+const operationKeys = [...document.querySelectorAll('.op')];
+const displayText = document.querySelector('.display-text');
+const resKey = document.querySelector('#k-res');
+const clearKey = document.querySelector('#k-clear');
+
+const clearDisplay = () => {
+    if (displayText.innerHTML === '0') {
+        displayText.innerHTML = '';
+    }
+}
+
+const checkOperation = (evt) => {
+    if (evt.target.innerHTML === 'x') {
+        displayText.innerHTML += '*';
+        
+        signal = true;
+        floatPoint = false;
+    } else if (evt.target.innerHTML === ',' && !floatPoint) {
+        displayText.innerHTML += '.';
+        floatPoint = true;
+    } else if (evt.target.innerHTML !== ',') {
+        displayText.innerHTML += evt.target.innerHTML;
+        
+        signal = true;
+        floatPoint = false;
+    }
+}
+
+let signal = false;
+let floatPoint = false;
+
+numberKeys.forEach(key => {
+    key.addEventListener('click', (evt) => {
+        clearDisplay();
+
+        clearKey.innerHTML = 'C';
+
+        displayText.innerHTML += evt.target.innerHTML;
+
+        signal = false;
+    });
+});
+
+operationKeys.forEach(key => {
+    key.addEventListener('click', (evt) => {
+        if (!signal) {
+            clearKey.innerHTML = 'C';
+
+            checkOperation(evt);
+        }
+    });
+});
+
+resKey.addEventListener('click', () => {
+    res = eval(displayText.innerHTML);
+
+    res = res.toString();
+    
+    if (res.length >= 11) {
+        res = res.slice(0, 11);
+    }
+    
+    displayText.innerHTML = res;
+    
+    signal = false;
+    floatPoint = false;
+});
+
+clearKey.addEventListener('click', () => {
+    clearKey.innerHTML = 'AC';
+
+    displayText.innerHTML = '0';
+
+    signal = false;
+    floatPoint = false;
+});
