@@ -60,6 +60,7 @@ body {
 }
 
 .gray {
+    color: black !important;
     background-color: #A5A5A5 !important;
 }
 
