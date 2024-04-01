@@ -5,7 +5,7 @@ const resKey = document.querySelector('#k-res');
 const clearKey = document.querySelector('#k-clear');
 
 const clearDisplay = () => {
-    if (displayText.innerHTML === '0') {
+    if (displayText.innerHTML === '0' || displayText.innerHTML === 'Infinity') {
         displayText.innerHTML = '';
     }
 }
@@ -18,6 +18,7 @@ const checkOperation = (evt) => {
         floatPoint = false;
     } else if (evt.target.innerHTML === ',' && !floatPoint) {
         displayText.innerHTML += '.';
+
         floatPoint = true;
     } else if (evt.target.innerHTML !== ',') {
         displayText.innerHTML += evt.target.innerHTML;
@@ -34,7 +35,9 @@ numberKeys.forEach(key => {
     key.addEventListener('click', (evt) => {
         clearDisplay();
 
-        clearKey.innerHTML = 'C';
+        if (evt.target.innerHTML !== '0'){
+            clearKey.innerHTML = 'C';
+        }
 
         displayText.innerHTML += evt.target.innerHTML;
 
