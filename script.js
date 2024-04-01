@@ -47,7 +47,7 @@ numberKeys.forEach(key => {
 
 operationKeys.forEach(key => {
     key.addEventListener('click', (evt) => {
-        if (!signal) {
+        if (!signal && displayText.innerHTML !== 'Infinity') {
             clearKey.innerHTML = 'C';
 
             checkOperation(evt);
