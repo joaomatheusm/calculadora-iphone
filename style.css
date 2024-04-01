@@ -5,14 +5,35 @@
     font-size: 1.08em;
 }
 
-body {
+.calculator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    position: absolute;
+    left: -320px;
+    transition: all 0.2s;
+}
+
+.calculator-show {
+    left: 0px !important;
+    transition: all 0.2s;
+}
+
+#calculator-tab {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 100px;
+    background-color: gray;
+    border: solid black 2px;
+    border-left: 0px;
+    width: 25px;
+    height: 100px;
+    border-radius: 0px 10px 10px 0px;
+    cursor: pointer;
 }
 
-.calculator {
+.main-calculator {
     padding: 10px;
     display: flex;
     align-items: center;

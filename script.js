@@ -3,6 +3,9 @@ const operationKeys = [...document.querySelectorAll('.op')];
 const displayText = document.querySelector('.display-text');
 const resKey = document.querySelector('#k-res');
 const clearKey = document.querySelector('#k-clear');
+const calculator = document.querySelector('.calculator');
+const calculatorTab = document.querySelector('#calculator-tab');
+const imgTab = document.querySelector('#tab-img');
 
 const clearDisplay = () => {
     if (displayText.innerHTML === '0' || displayText.innerHTML === 'Infinity') {
@@ -77,4 +80,14 @@ clearKey.addEventListener('click', () => {
 
     signal = false;
     floatPoint = false;
+});
+
+calculatorTab.addEventListener('click', (evt) => {
+    calculator.classList.toggle('calculator-show');
+
+    if (calculator.classList.contains('calculator-show')) {
+        imgTab.setAttribute('src', 'assets/arrow-left.png');
+    } else {
+        imgTab.setAttribute('src', 'assets/arrow-right.png');
+    }
 });
